@@ -11,7 +11,6 @@
   let lastTranscript = "";
   let gptResponse = "";
 
-
   const maxTextLength = 300;
 
   function truncateText(text: string) {
@@ -33,22 +32,20 @@
       recognition.interimResults = true;
 
       recognition.onresult = (event: any) => {
-        let tempInterimTranscript = "";
+        let newInterimTranscript = "";
+
         for (let i = event.resultIndex; i < event.results.length; ++i) {
           if (event.results[i].isFinal) {
             finalTranscript += event.results[i][0].transcript + " ";
           } else {
-            tempInterimTranscript += event.results[i][0].transcript;
+            newInterimTranscript += event.results[i][0].transcript;
           }
-          finalTranscript = truncateText(finalTranscript);
-          interimTranscript = truncateText(interimTranscript);
-
-          console.log("Final:", finalTranscript); // For debugging
-          console.log("Interim:", interimTranscript); // For debugging
         }
-        interimTranscript = tempInterimTranscript;
-        console.log("Interim:", interimTranscript); // For debugging
+
+        // Update the interim transcript only with new data
+        interimTranscript = newInterimTranscript;
         console.log("Final:", finalTranscript); // For debugging
+        console.log("Interim:", interimTranscript); // For debugging
       };
     }
   });
@@ -59,7 +56,10 @@
     clearTimeout(silenceTimer);
     silenceTimer = setTimeout(() => {
       // Check if currently recording and transcripts have not changed in the last 2 seconds
-      if (isRecording && (lastTranscript === (finalTranscript + interimTranscript))) {
+      if (
+        isRecording &&
+        lastTranscript === finalTranscript + interimTranscript
+      ) {
         pauseRecording();
         callGPTAPI();
       }
@@ -96,8 +96,8 @@
         }),
       }
     );
-
     const data = await response.json();
+    gptResponse = data.choices[0].text;
     console.log(data.choices[0].text); // For demonstration
 
     resumeRecording(); // Resume after handling the response
@@ -148,6 +148,9 @@
 </script>
 
 <div class="container flex-col justify-center">
+  <div class="gpt-response">
+    <p>{gptResponse}</p>
+  </div>
   <div class="h-80 transcript transcript-box mb-8 p-5">
     <p>{finalTranscript}{interimTranscript}</p>
   </div>

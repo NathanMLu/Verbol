@@ -6,23 +6,7 @@
     let isRecording = false;
     let audioClips = [];
   
-    async function recordAudio() {
-      if (!isRecording) {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        audioRecorder = RecordRTC(stream, { type: 'audio' });
-        audioRecorder.startRecording();
-        isRecording = true;
-      } else {
-        audioRecorder.stopRecording(async () => {
-          const blob = audioRecorder.getBlob();
-          // Save the blob to IndexedDB
-          // You need to implement the saveToIndexedDB function
-          await saveToIndexedDB(blob);
-          audioClips = [...audioClips, blob];
-          isRecording = false;
-        });
-      }
-    }
+    
   </script>
   
   <div>

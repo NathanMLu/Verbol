@@ -28,9 +28,9 @@
     console.log("This has been clicked " + name);
 
     const msg = new SpeechSynthesisUtterance(name);
-    const msg_2 = new SpeechSynthesisUtterance(predict(name))
+    // const msg_2 = new SpeechSynthesisUtterance(predict(name))
     window.speechSynthesis.speak(msg);
-    window.speechSynthesis.speak(msg_2);
+    // window.speechSynthesis.speak(msg_2);
   }
 </script>
 
@@ -164,9 +164,105 @@
       </td>
 
       <td>
+        <div on:click={() => textToSpeech("Bus")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Bus</h3>
+          <Icon icon="mdi:bus" class="w-10 h-10" />
+        </div>
+
+      </td>
+
+      <td>
+        <div on:click={() => textToSpeech("What")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">What</h3>
+          <Icon icon="logos:whatwg" class="w-10 h-10" />
+        </div>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <div on:click={() => textToSpeech("Phone")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Phone</h3>
+          <Icon icon="ic:baseline-phone" class="w-10 h-10" />
+        </div>
+
+      </td>
+      <td>
+        <div on:click={() => textToSpeech("Math")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Math</h3>
+          <Icon icon="material-symbols:table" class="w-10 h-10" />
+        </div>
+
+      </td>
+      <td>
+        <div on:click={() => textToSpeech("Today")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Today</h3>
+          <Icon icon="material-symbols:today" class="w-10 h-10" />
+        </div>
+
+      </td>
+
+      <td>
         <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
           <h3 class="text-center text-lg">Sleep</h3>
           <Icon icon="icon-park:right" class="w-10 h-10" />
+        </div>
+
+      </td>
+
+      <td>
+        <div on:click={() => textToSpeech("Maybe")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Maybe</h3>
+          <Icon icon="material-symbols:gpp-maybe" class="w-10 h-10" />
+        </div>
+
+      </td>
+
+      <td>
+        <div on:click={() => textToSpeech("Apple")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Apple</h3>
+          <Icon icon="emojione:red-apple" class="w-10 h-10" />
+        </div>
+
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <div on:click={() => textToSpeech("Pear")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Pear</h3>
+          <Icon icon="fluent-emoji:orange-circle" class="w-10 h-10" />
+        </div>
+
+      </td>
+      <td>
+        <div on:click={() => textToSpeech("Read")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Read</h3>
+          <Icon icon="ant-design:read-outlined" class="w-10 h-10" />
+        </div>
+
+      </td>
+      <td>
+        <div on:click={() => textToSpeech("Glass")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Glass</h3>
+          <Icon icon="mdi:glass" class="w-10 h-10" />
+        </div>
+
+      </td>
+
+      <td>
+        <div on:click={() => textToSpeech("Time")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Time</h3>
+          <Icon icon="mingcute:time-fill" class="w-10 h-10" />
+        </div>
+
+      </td>
+
+      <td>
+        <div on:click={() => textToSpeech("Play")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Play</h3>
+          <Icon icon="ri:game-fill" class="w-10 h-10" />
         </div>
 
       </td>
@@ -275,345 +371,6 @@
 
       </td>
     </tr>
-
-    <tr>
-      <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
-        </div>
-
-      </td>
-      <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
-        </div>
-
-      </td>
-      <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
-        </div>
-
-      </td>
-
-      <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
-        </div>
-
-      </td>
-
-      <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
-        </div>
-
-      </td>
-
-      <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
-        </div>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
-        </div>
-
-      </td>
-      <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
-        </div>
-
-      </td>
-      <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
-        </div>
-
-      </td>
-
-      <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
-        </div>
-
-      </td>
-
-      <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
-        </div>
-
-      </td>
-
-      <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
-        </div>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-    <tr>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-
-      <td>
-
-      </td>
-    </tr>
-
-
-
   </table>
 </div>
 
