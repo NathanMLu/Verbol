@@ -52,9 +52,12 @@
   });
 
   function resetSilenceTimer() {
+    lastTranscript = finalTranscript + interimTranscript;
+
     clearTimeout(silenceTimer);
     silenceTimer = setTimeout(() => {
-      if (isRecording) {
+      // Check if currently recording and transcripts have not changed in the last 2 seconds
+      if (isRecording && (lastTranscript === (finalTranscript + interimTranscript))) {
         pauseRecording();
         callGPTAPI();
       }

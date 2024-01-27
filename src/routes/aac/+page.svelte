@@ -108,17 +108,17 @@
       </td>
 
       <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
+        <div on:click={() => textToSpeech("Stop")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Stop</h3>
+          <Icon icon="openmoji:stop-sign" class="w-10 h-10" />
         </div>
 
       </td>
 
       <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
+        <div on:click={() => textToSpeech("You")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">You</h3>
+          <Icon icon="arcticons:daily-you" class="w-10 h-10" />
         </div>
 
       </td>

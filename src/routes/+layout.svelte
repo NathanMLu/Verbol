@@ -38,7 +38,7 @@
 			<img src="./favicon.png" alt="Favicon" class="w-14 h-14" />
 		</a>
 	</nav>
-	<main class="px-5">
+	<main class="px-5 mb-4">
 		<slot />
 	</main>
 
