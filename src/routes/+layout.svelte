@@ -1,19 +1,32 @@
 <script>
-	import Header from './Header.svelte';
-	import './styles.css';
 	import "../app.css";
+	import Icon from '@iconify/svelte';
+
 
 </script>
 
-<div class="app">
-	<Header />
-
-	<main>
+<div class="app flex flex-col min-h-screen h-auto">
+	<nav class="p-5 h-min">
+		<a href="/">
+			<img src="./favicon.png" alt="Favicon" class="w-14 h-14" />
+		</a>
+	</nav>
+	<main class="px-5">
 		<slot />
 	</main>
 
-	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+	<footer class="mt-auto">
+		<div class="flex justify-between align-middle h-20">
+			<a href="/record" class="flex justify-center items-center footer-icon ml-8">
+				<Icon icon="fluent:mic-32-filled" class="w-12 h-12" />
+			</a>
+			<a href="/" class="flex justify-center items-center footer-icon">
+				<Icon icon="fluent:home-32-filled" class="w-12 h-12" />
+			</a>
+			<a href="/profile" class="flex justify-center items-center footer-icon mr-8">
+				<Icon icon="fluent:person-16-filled" class="w-12 h-12" />
+			</a>
+		</div>
 	</footer>
 </div>
 
@@ -22,34 +35,16 @@
 		display: flex;
 		flex-direction: column;
 		min-height: 100vh;
-	}
-
-	main {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		padding: 1rem;
-		width: 100%;
-		max-width: 64rem;
-		margin: 0 auto;
-		box-sizing: border-box;
+		background: linear-gradient(45deg, #277CC6, #EAEFEE 60%);
 	}
 
 	footer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 12px;
+		background-color: #1F3A4C;
 	}
 
-	footer a {
-		font-weight: bold;
+	.footer-icon {
+		color: #EAEFEE;
 	}
 
-	@media (min-width: 480px) {
-		footer {
-			padding: 12px 0;
-		}
-	}
+	
 </style>
