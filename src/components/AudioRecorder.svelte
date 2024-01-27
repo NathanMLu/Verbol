@@ -39,12 +39,12 @@
         for (let i = event.resultIndex; i < event.results.length; ++i) {
           if (event.results[i].isFinal) {
             finalTranscript += event.results[i][0].transcript + " ";
+            newInterimTranscript = ""; // Clear interim transcript when final result is obtained
           } else {
             newInterimTranscript += event.results[i][0].transcript;
           }
         }
 
-        // Update the interim transcript only with new data
         interimTranscript = newInterimTranscript;
         console.log("Final:", finalTranscript); // For debugging
         console.log("Interim:", interimTranscript); // For debugging
@@ -68,12 +68,12 @@
         callGPTAPI();
         // example();
       }
-    }, 2000); // 2 seconds of silence
+    }, 1000); // 2 seconds of silence
   }
 
   function pauseRecording() {
     if (recognition) recognition.stop();
-    isRecording = false;    // example();
+    isRecording = false; // example();
   }
 
   function resumeRecording() {
@@ -84,12 +84,43 @@
   async function callGPTAPI() {
     // example();
     const context = finalTranscript + interimTranscript; // Combine final and interim text
-    const nextWords = ["sad"]; // Replace with your own list of words
+    const nextWords = [
+      "vacant",
+      "weightless",
+      "whale",
+      "zany",
+      "jasmine",
+      "macro",
+      "knapsack",
+      "rabbit",
+      "tactile",
+      "vanish",
+      "achoo",
+      "father",
+      "launch",
+      "macho",
+      "patrol",
+      "taboo",
+      "beachfront",
+      "healer",
+      "legion",
+      "peaceful",
+      "sheepdog",
+      "thyme",
+      "vibrant",
+      "ghost",
+      "hoagie",
+      "locust",
+      "motion",
+      "romance",
+      "vogue",
+      "whopper",
+    ];
     const promptText = `Given the conversation: "${context}", predict the next word from the following options. If it doesn't match in the words and you aren't confident, then say none. Only give the word or none, don't give me anything else. The words that can come next are: [${nextWords.join(
       ", "
     )}]`;
 
-    const apiKey = "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"; // Replace with your actual API key
+    const apiKey = "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"; // Replace with your actual API key
     console.log("Calling GPT API with:", finalTranscript + interimTranscript); // Debugging
 
     try {
@@ -107,18 +138,17 @@
             model: "gpt-3.5-turbo",
             messages: [
               {
-                "role": "user",
-                "content": promptText,
+                role: "user",
+                content: promptText,
               },
-            ]
-
+            ],
           }),
         }
       );
       const data = await response.json();
       gptResponse = data.choices[0].message.content;
 
-      if (gptResponse === "none") {
+      if (gptResponse === "none" || gptResponse === "None") {
         // If the response is none, then resume recording
         resumeRecording();
         return;
@@ -178,7 +208,6 @@
       isRecording = false;
     }
   };
-  
 </script>
 
 <div class="container flex-col justify-center">
