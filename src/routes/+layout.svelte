@@ -1,35 +1,6 @@
 <script lang="ts">
 	import "../app.css";
 	import Icon from '@iconify/svelte';
-	import { onMount } from 'svelte';
-
-	let onBoarded: boolean = false;
-
-
-	// onMount(() => {
-	// 	// onBoarded = checkIfOnboarded();
-	// 	console.log(onBoarded)
-	// 	if (!onBoarded) {
-	// 	window.localStorage.setItem("onboarded", "true");
-	// 	}
-
-	// });
-
-
-
-	// const checkIfOnboarded = () => {
-	// 	const onboarded = window.localStorage.getItem("onboarded");
-	// 	console.log(onboarded)
-	// 	if (onboarded === "true") {
-	// 	return true;
-	// 	} else {
-	// 	return false;
-	// 	}
-	// };
-
-
-
-  
 </script>
 
 <div class="app flex flex-col min-h-screen h-auto">

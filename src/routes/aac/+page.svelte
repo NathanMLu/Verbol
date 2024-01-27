@@ -3,18 +3,10 @@
 
   import Predictionary from "predictionary";
 
+  let predictions = [];
+
   let predictionary = Predictionary.instance();
-  predictionary.addWords(["the", "be", "to", "of", "and", "a", "in", "that", "have", "it",
-    "for", "not", "on", "with", "he", "as", "you", "do", "at", "this",
-    "but", "his", "by", "from", "they", "we", "say", "her", "she", "or",
-    "an", "will", "my", "one", "all", "would", "there", "their", "what",
-    "so", "up", "out", "if", "about", "who", "get", "which", "go", "me",
-    "when", "make", "can", "like", "time", "no", "just", "him", "know",
-    "take", "people", "into", "year", "your", "good", "some", "could",
-    "them", "see", "other", "than", "then", "now", "look", "only", "come",
-    "its", "over", "think", "also", "back", "after", "use", "two", "how",
-    "our", "work", "first", "well", "way", "even", "new", "want", "because",
-    "any", "these", "give", "day", "most", "us"]);
+  predictionary.addWords(["more"]);
 
 
 
@@ -27,9 +19,14 @@
   function textToSpeech(name: string) {
     console.log("This has been clicked " + name);
 
+
     const msg = new SpeechSynthesisUtterance(name);
-    // const msg_2 = new SpeechSynthesisUtterance(predict(name))
+    const msg_2 = new SpeechSynthesisUtterance(predict(name))
     window.speechSynthesis.speak(msg);
+    // window.speechSynthesis.speak(msg_2);
+
+    predictions = predict(name);
+    console.log(predictions)
     // window.speechSynthesis.speak(msg_2);
   }
 </script>
@@ -47,7 +44,7 @@
         </div>
       </td>
       <td style="width: 10%;">
-        <div on:click={() => textToSpeech("Bathroom")} class="flex flex-col items-center justify-center">
+        <div on:click={() => textToSpeech("Wash")} class="flex flex-col items-center justify-center">
           <h3 class="text-center text-lg">Wash</h3>
           <Icon icon="cbi:roomsbathroom" class="w-10 h-10" />
         </div>
@@ -268,9 +265,9 @@
       </td>
 
       <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
+        <div on:click={() => textToSpeech("Cash")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Cash</h3>
+          <Icon icon="material-symbols:money" class="w-10 h-10" />
         </div>
 
       </td>
@@ -278,47 +275,47 @@
 
     <tr>
       <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
+        <div on:click={() => textToSpeech("Song")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Song</h3>
+          <Icon icon="streamline:music-folder-song" class="w-10 h-10" />
         </div>
 
       </td>
       <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
+        <div on:click={() => textToSpeech("Car")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Car</h3>
+          <Icon icon="mdi:car" class="w-10 h-10" />
         </div>
 
       </td>
       <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
-        </div>
-
-      </td>
-
-      <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
+        <div on:click={() => textToSpeech("Beach")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Beach</h3>
+          <Icon icon="mdi:beach" class="w-10 h-10" />
         </div>
 
       </td>
 
       <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
+        <div on:click={() => textToSpeech("Fly")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Fly</h3>
+          <Icon icon="tabler:plane" class="w-10 h-10" />
         </div>
 
       </td>
 
       <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
+        <div on:click={() => textToSpeech("More")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">More</h3>
+          <Icon icon="material-symbols:more" class="w-10 h-10" />
+        </div>
+
+      </td>
+
+      <td>
+        <div on:click={() => textToSpeech("Book")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Book</h3>
+          <Icon icon="material-symbols:book" class="w-10 h-10" />
         </div>
 
       </td>
@@ -326,47 +323,47 @@
 
     <tr>
       <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
+        <div on:click={() => textToSpeech("Go")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Go</h3>
+          <Icon icon="simple-icons:go" class="w-10 h-10" />
         </div>
 
       </td>
       <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
+        <div on:click={() => textToSpeech("Home")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Home</h3>
+          <Icon icon="material-symbols:home" class="w-10 h-10" />
         </div>
 
       </td>
       <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
-        </div>
-
-      </td>
-
-      <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
+        <div on:click={() => textToSpeech("Shirt")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Shirt</h3>
+          <Icon icon="tabler:shirt" class="w-10 h-10" />
         </div>
 
       </td>
 
       <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
+        <div on:click={() => textToSpeech("Hat")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Hat</h3>
+          <Icon icon="mingcute:hat-fill" class="w-10 h-10" />
         </div>
 
       </td>
 
       <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
+        <div on:click={() => textToSpeech("Pants")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Pants</h3>
+          <Icon icon="ph:pants" class="w-10 h-10" />
+        </div>
+
+      </td>
+
+      <td>
+        <div on:click={() => textToSpeech("Case")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Case</h3>
+          <Icon icon="solar:case-bold" class="w-10 h-10" />
         </div>
 
       </td>
@@ -381,6 +378,6 @@
   td,
   th {
     border: 1px solid black;
-    padding: 8px;
+    padding: 5px;
   }
 </style>

@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  // import { ChatGPTAPI } from 'chatgpt'
 
   let isRecording = false;
   let mediaRecorder: MediaRecorder | null = null;
@@ -21,7 +22,8 @@
   }
 
   const textToSpeech = () => {
-    const msg = new SpeechSynthesisUtterance(finalTranscript);
+    const lastSentence = finalTranscript.split(".").pop();
+    const msg = new SpeechSynthesisUtterance(lastSentence);
     window.speechSynthesis.speak(msg);
   };
 
@@ -46,6 +48,8 @@
         interimTranscript = newInterimTranscript;
         console.log("Final:", finalTranscript); // For debugging
         console.log("Interim:", interimTranscript); // For debugging
+
+        resetSilenceTimer(); // Reset the timer on every speech input
       };
     }
   });
@@ -62,13 +66,14 @@
       ) {
         pauseRecording();
         callGPTAPI();
+        // example();
       }
     }, 2000); // 2 seconds of silence
   }
 
   function pauseRecording() {
     if (recognition) recognition.stop();
-    isRecording = false;
+    isRecording = false;    // example();
   }
 
   function resumeRecording() {
@@ -77,30 +82,58 @@
   }
 
   async function callGPTAPI() {
+    // example();
     const context = finalTranscript + interimTranscript; // Combine final and interim text
-    const promptText = `Given the conversation: "${context}", predict the next words with their confidence ratings:\n`;
+    const nextWords = ["sad"]; // Replace with your own list of words
+    const promptText = `Given the conversation: "${context}", predict the next word from the following options. If it doesn't match in the words and you aren't confident, then say none. Only give the word or none, don't give me anything else. The words that can come next are: [${nextWords.join(
+      ", "
+    )}]`;
 
-    const apiKey = "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"; // Replace with your actual API key
+    const apiKey = "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"; // Replace with your actual API key
+    console.log("Calling GPT API with:", finalTranscript + interimTranscript); // Debugging
 
-    const response = await fetch(
-      "https://api.openai.com/v1/engines/davinci/completions",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${apiKey}`, // Using the apiKey variable
-        },
-        body: JSON.stringify({
-          prompt: promptText,
-          max_tokens: 5, // Adjust as needed
-        }),
+    try {
+      const response = await fetch(
+        "https://api.openai.com/v1/chat/completions",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${apiKey}`, // Using the apiKey variable
+          },
+          body: JSON.stringify({
+            // prompt: promptText,
+            // max_tokens: 5, // Adjust as needed
+            model: "gpt-3.5-turbo",
+            messages: [
+              {
+                "role": "user",
+                "content": promptText,
+              },
+            ]
+
+          }),
+        }
+      );
+      const data = await response.json();
+      gptResponse = data.choices[0].message.content;
+
+      if (gptResponse === "none") {
+        // If the response is none, then resume recording
+        resumeRecording();
+        return;
+      } else {
+        finalTranscript += gptResponse + " ";
+        const msg = new SpeechSynthesisUtterance(gptResponse);
+        window.speechSynthesis.speak(msg);
       }
-    );
-    const data = await response.json();
-    gptResponse = data.choices[0].text;
-    console.log(data.choices[0].text); // For demonstration
 
-    resumeRecording(); // Resume after handling the response
+      console.log("GPT API response:", gptResponse); // Debugging
+
+      resumeRecording(); // Resume after handling the response
+    } catch (error) {
+      console.error("Error calling GPT API:", error);
+    }
   }
 
   const toggleRecording = async () => {
@@ -145,12 +178,13 @@
       isRecording = false;
     }
   };
+  
 </script>
 
 <div class="container flex-col justify-center">
-  <div class="gpt-response">
+  <!-- <div class="gpt-response">
     <p>{gptResponse}</p>
-  </div>
+  </div> -->
   <div class="h-80 transcript transcript-box mb-8 p-5">
     <p>{finalTranscript}{interimTranscript}</p>
   </div>
