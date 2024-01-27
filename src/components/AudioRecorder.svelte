@@ -9,6 +9,8 @@
   let interimTranscript = "";
   let silenceTimer: any;
   let lastTranscript = "";
+  let gptResponse = "";
+
 
   const maxTextLength = 300;
 

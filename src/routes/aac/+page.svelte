@@ -124,9 +124,9 @@
       </td>
 
       <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
+        <div on:click={() => textToSpeech("Water")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Water</h3>
+          <Icon icon="mdi:water" class="w-10 h-10" />
         </div>
 
       </td>
@@ -134,31 +134,31 @@
 
     <tr>
       <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
+        <div on:click={() => textToSpeech("Pet")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Pet</h3>
+          <Icon icon="streamline:pet-paw" class="w-10 h-10" />
         </div>
 
       </td>
       <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
+        <div on:click={() => textToSpeech("Mom")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Mom</h3>
+          <Icon icon="mdi:mom" class="w-10 h-10" />
         </div>
 
       </td>
       <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
+        <div on:click={() => textToSpeech("Dad")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">Dad</h3>
+          <Icon icon="mdi:father" class="w-10 h-10" />
         </div>
 
       </td>
 
       <td>
-        <div on:click={() => textToSpeech("Sleep")} class="flex flex-col items-center justify-center">
-          <h3 class="text-center text-lg">Sleep</h3>
-          <Icon icon="icon-park:right" class="w-10 h-10" />
+        <div on:click={() => textToSpeech("TV")} class="flex flex-col items-center justify-center">
+          <h3 class="text-center text-lg">TV</h3>
+          <Icon icon="mdi:television" class="w-10 h-10" />
         </div>
 
       </td>
