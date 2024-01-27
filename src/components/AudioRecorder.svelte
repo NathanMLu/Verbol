@@ -14,6 +14,22 @@
 
   const maxTextLength = 300;
 
+  let debounceTimer: any; // Change the type to 'any' to avoid the conflict
+
+function updateTranscripts(newFinalTranscript: string, newInterimTranscript: string) {
+  clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => {
+      finalTranscript = newFinalTranscript;
+      interimTranscript = newInterimTranscript;
+
+      console.log("Updated Final:", finalTranscript);
+      console.log("Updated Interim:", interimTranscript);
+
+      resetSilenceTimer();
+    }, 500); // Debounce time in milliseconds
+  }
+
+
   function truncateText(text: string) {
     if (text.length > maxTextLength) {
       return text.substring(text.length - maxTextLength, text.length);
@@ -34,7 +50,9 @@
       recognition.interimResults = true;
 
       recognition.onresult = (event: any) => {
+        let newFinalTranscript = finalTranscript;
         let newInterimTranscript = "";
+
 
         for (let i = event.resultIndex; i < event.results.length; ++i) {
           if (event.results[i].isFinal) {
@@ -50,6 +68,7 @@
         console.log("Interim:", interimTranscript); // For debugging
 
         resetSilenceTimer(); // Reset the timer on every speech input
+        
       };
     }
   });
@@ -85,6 +104,7 @@
     // example();
     const context = finalTranscript + interimTranscript; // Combine final and interim text
     const nextWords = [
+      "sad",
       "vacant",
       "weightless",
       "whale",
@@ -120,7 +140,7 @@
       ", "
     )}]`;
 
-    const apiKey = "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"; // Replace with your actual API key
+    const apiKey = "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"; // Replace with your actual API key
     console.log("Calling GPT API with:", finalTranscript + interimTranscript); // Debugging
 
     try {

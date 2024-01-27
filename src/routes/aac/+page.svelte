@@ -33,7 +33,7 @@
 
 <div>
   <h1 class="font-semibold text-4xl">AAC Communication</h1>
-  <p>Click on a word to hear it spoken. Based on what you say, we will try to predict what you want to say next.</p>
+  <p>Click on a word to hear it spoken.</p>
 
   <table class="table-auto mt-6">
     <tr>
