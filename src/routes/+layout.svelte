@@ -44,14 +44,14 @@
 
 	<footer class="mt-auto">
 		<div class="flex justify-between align-middle h-20">
-			<a href="/record" class="flex justify-center items-center footer-icon ml-8">
-				<Icon icon="fluent:mic-32-filled" class="w-12 h-12" />
+			<a href="/aac" class="flex justify-center items-center footer-icon ml-8">
+				<Icon icon="fluent:chat-32-filled" class="w-12 h-12" />
 			</a>
 			<a href="/" class="flex justify-center items-center footer-icon">
-				<Icon icon="fluent:home-32-filled" class="w-12 h-12" />
+				<Icon icon="fluent:mic-32-filled" class="w-12 h-12" />
 			</a>
-			<a href="/profile" class="flex justify-center items-center footer-icon mr-8">
-				<Icon icon="fluent:person-16-filled" class="w-12 h-12" />
+			<a href="/settings" class="flex justify-center items-center footer-icon mr-8">
+				<Icon icon="fluent:settings-32-filled" class="w-12 h-12" />
 			</a>
 		</div>
 	</footer>

@@ -7,6 +7,22 @@
   let recognition: any;
   let finalTranscript = "";
   let interimTranscript = "";
+  let silenceTimer: any;
+  let lastTranscript = "";
+
+  const maxTextLength = 300;
+
+  function truncateText(text: string) {
+    if (text.length > maxTextLength) {
+      return text.substring(text.length - maxTextLength, text.length);
+    }
+    return text;
+  }
+
+  const textToSpeech = () => {
+    const msg = new SpeechSynthesisUtterance(finalTranscript);
+    window.speechSynthesis.speak(msg);
+  };
 
   onMount(() => {
     if ("webkitSpeechRecognition" in window) {
@@ -22,6 +38,11 @@
           } else {
             tempInterimTranscript += event.results[i][0].transcript;
           }
+          finalTranscript = truncateText(finalTranscript);
+          interimTranscript = truncateText(interimTranscript);
+
+          console.log("Final:", finalTranscript); // For debugging
+          console.log("Interim:", interimTranscript); // For debugging
         }
         interimTranscript = tempInterimTranscript;
         console.log("Interim:", interimTranscript); // For debugging
@@ -29,6 +50,53 @@
       };
     }
   });
+
+  function resetSilenceTimer() {
+    clearTimeout(silenceTimer);
+    silenceTimer = setTimeout(() => {
+      if (isRecording) {
+        pauseRecording();
+        callGPTAPI();
+      }
+    }, 2000); // 2 seconds of silence
+  }
+
+  function pauseRecording() {
+    if (recognition) recognition.stop();
+    isRecording = false;
+  }
+
+  function resumeRecording() {
+    if (recognition) recognition.start();
+    isRecording = true;
+  }
+
+  async function callGPTAPI() {
+    const context = finalTranscript + interimTranscript; // Combine final and interim text
+    const promptText = `Given the conversation: "${context}", predict the next words with their confidence ratings:\n`;
+
+    const apiKey = "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"; // Replace with your actual API key
+
+    const response = await fetch(
+      "https://api.openai.com/v1/engines/davinci/completions",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${apiKey}`, // Using the apiKey variable
+        },
+        body: JSON.stringify({
+          prompt: promptText,
+          max_tokens: 5, // Adjust as needed
+        }),
+      }
+    );
+
+    const data = await response.json();
+    console.log(data.choices[0].text); // For demonstration
+
+    resumeRecording(); // Resume after handling the response
+  }
 
   const toggleRecording = async () => {
     if (!isRecording) {
@@ -74,7 +142,10 @@
   };
 </script>
 
-<div class="container">
+<div class="container flex-col justify-center">
+  <div class="h-80 transcript transcript-box mb-8 p-5">
+    <p>{finalTranscript}{interimTranscript}</p>
+  </div>
   <button on:click={toggleRecording} class="record-button">
     {#if isRecording}
       <div>
@@ -105,11 +176,9 @@
       </div>
     {/if}
   </button>
-  <div class="transcript">
-    <h2>Transcribed Text:</h2>
-    <p>{finalTranscript}</p>
-    <p class="interim">{interimTranscript}</p>
-  </div>
+  <button class="px-4 py-2 verbolize rounded-lg mt-8" on:click={textToSpeech}>
+    Verbolize
+  </button>
 </div>
 
 <style>
@@ -137,9 +206,20 @@
     margin-top: 20px;
   }
 
-  .icon {
-    width: 24px;
-    height: 24px;
-    fill: currentColor;
+  .transcript-box {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    overflow-y: auto;
+    background-color: white;
+    width: 80%;
+    max-width: 600px;
+  }
+
+  .verbolize {
+    border: 2px solid #1f3a4c;
+    border-radius: 10px;
+    background-color: #1f3a4c;
+    color: white;
   }
 </style>
