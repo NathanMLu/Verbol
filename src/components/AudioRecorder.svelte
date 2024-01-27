@@ -1,7 +1,34 @@
 <script lang="ts">
+  import { onMount } from "svelte";
+
   let isRecording = false;
   let mediaRecorder: MediaRecorder | null = null;
   let audioChunks: BlobPart[] = [];
+  let recognition: any;
+  let finalTranscript = "";
+  let interimTranscript = "";
+
+  onMount(() => {
+    if ("webkitSpeechRecognition" in window) {
+      recognition = new (window as any).webkitSpeechRecognition();
+      recognition.continuous = true;
+      recognition.interimResults = true;
+
+      recognition.onresult = (event: any) => {
+        let tempInterimTranscript = "";
+        for (let i = event.resultIndex; i < event.results.length; ++i) {
+          if (event.results[i].isFinal) {
+            finalTranscript += event.results[i][0].transcript + " ";
+          } else {
+            tempInterimTranscript += event.results[i][0].transcript;
+          }
+        }
+        interimTranscript = tempInterimTranscript;
+        console.log("Interim:", interimTranscript); // For debugging
+        console.log("Final:", finalTranscript); // For debugging
+      };
+    }
+  });
 
   const toggleRecording = async () => {
     if (!isRecording) {
@@ -31,6 +58,7 @@
           console.error("Error accessing media devices:", error);
         }
       };
+      recognition.start();
       console.log("isRecording = true");
       isRecording = true;
     } else {
@@ -39,6 +67,7 @@
           mediaRecorder.stop();
         }
       };
+      recognition.stop();
       console.log("isRecording = false");
       isRecording = false;
     }
@@ -76,6 +105,11 @@
       </div>
     {/if}
   </button>
+  <div class="transcript">
+    <h2>Transcribed Text:</h2>
+    <p>{finalTranscript}</p>
+    <p class="interim">{interimTranscript}</p>
+  </div>
 </div>
 
 <style>
@@ -97,6 +131,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
+  .transcript {
+    margin-top: 20px;
   }
 
   .icon {

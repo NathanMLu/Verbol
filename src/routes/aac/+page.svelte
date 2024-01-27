@@ -9,6 +9,8 @@
     window.speechSynthesis.speak(msg);
     
   }
+
+
 </script>
 
 <div>
@@ -19,7 +21,7 @@
   </p>
   <Icon icon="" />
 
-  <table>
+  <table class="table-auto">
     <tr>
       <td class="flex flex-col align-middle">
         <div on:click={() => textToSpeech("Eat")}>
@@ -42,8 +44,22 @@
       </td>
 
       <td>
-        <div on:click={() => textToSpeech("More")}>
-          <h3 class="text-center text-lg">More</h3>
+        <div on:click={() => textToSpeech("No")}>
+          <h3 class="text-center text-lg">No</h3>
+          <Icon icon="dashicons:no" class="w-10 h-10" />
+        </div>
+      </td>
+
+      <td>
+        <div on:click={() => textToSpeech("Out")}>
+          <h3 class="text-center text-lg">Out</h3>
+          <Icon icon="arcticons:clear-outside" class="w-10 h-10" />
+        </div>
+      </td>
+
+      <td>
+        <div on:click={() => textToSpeech("In")}>
+          <h3 class="text-center text-lg">In</h3>
           <Icon icon="ic:outline-expand-less" class="w-10 h-10" />
         </div>
       </td>

@@ -1,22 +1,20 @@
 <script lang="ts">
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
-	import AudioRecorder from '../components/AudioRecorder.svelte';
+  import AudioRecorder from "../components/AudioRecorder.svelte";
+  import { predict } from "../helper/prediction";
 
+  console.log(predict("hello"));
 
 </script>
 
 <svelte:head>
-	<title>Verbol</title>
+  <title>Verbol</title>
 </svelte:head>
 
 <div>
-	<form action="" method="">
-		<AudioRecorder />
-	</form>
-
+  <form action="" method="">
+    <AudioRecorder />
+  </form>
 </div>
-	
-<style>
 
+<style>
 </style>
