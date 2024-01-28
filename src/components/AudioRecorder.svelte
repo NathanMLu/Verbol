@@ -140,7 +140,7 @@ function updateTranscripts(newFinalTranscript: string, newInterimTranscript: str
       ", "
     )}]`;
 
-    const apiKey = "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"; // Replace with your actual API key
+    const apiKey = "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"; // Replace with your actual API key
     console.log("Calling GPT API with:", finalTranscript + interimTranscript); // Debugging
 
     try {
