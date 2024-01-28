@@ -140,7 +140,9 @@ function updateTranscripts(newFinalTranscript: string, newInterimTranscript: str
       ", "
     )}]`;
 
-    const apiKey = "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"; // Replace with your actual API key
+    const MY_API_KEY = import.meta.env.VITE_API_KEY;
+    console.log(MY_API_KEY);
+    // const apiKey = "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"; // Replace with your actual API key
     console.log("Calling GPT API with:", finalTranscript + interimTranscript); // Debugging
 
     try {
@@ -150,7 +152,7 @@ function updateTranscripts(newFinalTranscript: string, newInterimTranscript: str
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${apiKey}`, // Using the apiKey variable
+            Authorization: `Bearer ${MY_API_KEY}`, // Using the apiKey variable
           },
           body: JSON.stringify({
             // prompt: promptText,
